@@ -7,7 +7,8 @@ const movieList = require('./movies-data.json');
 
 const app = express();
 
-app.use(morgan('dev'));
+const morganSetting = process.env.NODE_ENV === 'production' ? 'Tiny' : 'dev';
+app.use(morgan(morganSetting));
 app.use(helmet());
 app.use(cors());
 
@@ -63,11 +64,22 @@ app.get('/movie', function handleGetMovies(req,res) {
   res.send(responseArray);
 });
 
-//Below tarts the server to listen for requests. 
 
-const PORT = 8000;
+//Below readys the server to listen for requests and handles errors.
+
+app.use((error,req,res,next) => {
+  let response;
+  if(process.env.NODE_ENV === 'production'){
+    response = {error:{message:'server error'}};
+  } else {
+    response = {error};
+  }
+  res.status(500).json(response);
+});
+
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT,() => {
-  console.log('Moviedex listening on 8000');
+  console.log(`Moviedex listening on Port ${PORT}`);
 });
 
