@@ -14,7 +14,7 @@ app.use(cors());
 
 //Security token established. 
 app.use(function validateSecurity(req,res,next){
-  const securityToken = process.env.API_Token;
+  const securityToken = process.env.API_TOKEN;
   const reqToken = req.get('Authorization');
 
   if (!reqToken || reqToken !== securityToken.split(' ')[1]){
