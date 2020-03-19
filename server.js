@@ -17,7 +17,7 @@ app.use(function validateSecurity(req,res,next){
   const securityToken = process.env.API_TOKEN;
   const reqToken = req.get('Authorization');
 
-  if (!reqToken || reqToken !== securityToken.split(' ')[1]){
+  if (!reqToken || securityToken !== reqToken.split(' ')[1]){
     return res.status(401).json({error: 'Unauthorized: Please Use a Valid Security Token'});  
   }
   next();
