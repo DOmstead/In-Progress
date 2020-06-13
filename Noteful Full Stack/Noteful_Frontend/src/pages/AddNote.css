@@ -1,0 +1,17 @@
+form#addNote {
+	display: inline-flex;
+	flex-direction: column;
+	max-width: 960px;
+}
+
+form#addNote textarea {
+	margin-top: 2rem;
+}
+
+form#addNote select {
+	margin-top: 2rem;
+}
+
+form#addNote button {
+	margin-top: 2rem;
+}

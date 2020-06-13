@@ -1,0 +1,28 @@
+.wrapper {
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+aside {
+	margin-right: 4rem;
+}
+
+main {
+	width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	.wrapper {
+		flex-direction: row;
+	}
+
+	aside {
+		flex: none;
+	}
+
+	main {
+		flex: auto;
+	}
+}
